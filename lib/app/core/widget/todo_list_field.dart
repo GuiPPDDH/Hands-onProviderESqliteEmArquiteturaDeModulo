@@ -28,6 +28,7 @@ class TodoListField extends StatelessWidget {
       builder: (_, obscureTextValue, __) {
         return TextFormField(
           controller: controller,
+          validator: validator,
           decoration: InputDecoration(
             labelText: label,
             labelStyle: TextStyle(
@@ -56,7 +57,6 @@ class TodoListField extends StatelessWidget {
                     : null),
           ),
           obscureText: obscureTextValue,
-          validator: validator,
         );
       },
     );

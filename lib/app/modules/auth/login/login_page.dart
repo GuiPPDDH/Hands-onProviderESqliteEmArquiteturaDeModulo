@@ -20,10 +20,10 @@ class LoginPage extends StatelessWidget {
               child: IntrinsicHeight(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    TodoListLogo(),
+                    const TodoListLogo(),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 40,
@@ -33,14 +33,14 @@ class LoginPage extends StatelessWidget {
                         child: Column(
                           children: [
                             TodoListField(label: 'E-mail'),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             TodoListField(
                               label: 'Senha',
                               obscureText: true,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(
@@ -48,17 +48,17 @@ class LoginPage extends StatelessWidget {
                               children: [
                                 TextButton(
                                   onPressed: () {},
-                                  child: Text('Esqueceu sua senha?'),
+                                  child: const Text('Esqueceu sua senha?'),
                                 ),
                                 ElevatedButton(
                                   onPressed: () {},
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Text('Login'),
-                                  ),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20)),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(12.0),
+                                    child: Text('Login'),
                                   ),
                                 ),
                               ],
@@ -67,13 +67,13 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0xffF0F3F7),
+                          color: const Color(0xffF0F3F7),
                           border: Border(
                             top: BorderSide(
                               width: 2,
@@ -83,14 +83,14 @@ class LoginPage extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             SignInButton(
                               Buttons.Google,
                               text: 'Continue com o Google',
                               onPressed: () {},
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               shape: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
                                   borderSide: BorderSide.none),
@@ -98,10 +98,12 @@ class LoginPage extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Não tem conta?'),
+                                const Text('Não tem conta?'),
                                 TextButton(
-                                  onPressed: () {},
-                                  child: Text('Cadastre-se'),
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed('/register');
+                                  },
+                                  child: const Text('Cadastre-se'),
                                 ),
                               ],
                             ),
