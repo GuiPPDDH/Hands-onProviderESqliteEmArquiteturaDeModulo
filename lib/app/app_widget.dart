@@ -14,6 +14,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'Todo List Provider',
       theme: TodoListUiConfig.theme,
+      debugShowCheckedModeBanner: false,
       navigatorKey: TodoListNavigator.navigatorKey,
       routes: {
         ...AuthModule().routers,
