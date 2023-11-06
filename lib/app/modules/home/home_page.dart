@@ -4,6 +4,8 @@ import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_filters.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_header.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/home_tasks.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/home_week_filter.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/todo_card_filter.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
         iconTheme: IconThemeData(
           color: context.primaryColor,
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFFFAFBFE),
         elevation: 0,
         actions: [
           PopupMenuButton(
@@ -48,11 +50,20 @@ class HomePage extends StatelessWidget {
                   children: [
                     HomeHeader(),
                     HomeFilters(),
+                    HomeWeekFilter(),
+                    HomeTasks(),
                   ],
                 ),
               ),
             ),
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: context.primaryColor,
+        child: const Icon(
+          Icons.add,
         ),
       ),
     );
