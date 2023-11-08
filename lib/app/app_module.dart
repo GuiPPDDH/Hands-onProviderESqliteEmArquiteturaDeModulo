@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/app_widget.dart';
 import 'package:todo_list_provider/app/core/auth/auth_provider.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_adm_connection.dart';
+import 'package:todo_list_provider/app/core/database/sqlite_connection_factory.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_migration_factory.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository_impl.dart';
@@ -41,6 +42,10 @@ class _AppModuleState extends State<AppModule> {
         ),
         Provider(
           create: (_) => FirebaseAuth.instance,
+        ),
+        Provider(
+          create: (_) => SqliteConnectionFactory(),
+          lazy: false,
         ),
         Provider<UserRepository>(
           create: (context) => UserRepositoryImpl(firebaseAuth: context.read()),
