@@ -21,14 +21,6 @@ class HomeTasks extends StatelessWidget {
           const Column(
             children: [
               Task(),
-              Task(),
-              Task(),
-              Task(),
-              Task(),
-              Task(),
-              Task(),
-              Task(),
-              Task(),
             ],
           ),
         ],

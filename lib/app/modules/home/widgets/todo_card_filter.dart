@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extension.dart';
+import 'package:todo_list_provider/app/models/task_filter_enum.dart';
+import 'package:todo_list_provider/app/models/total_tasks_model.dart';
 
-class TodoCardFilter extends StatefulWidget {
-  const TodoCardFilter({super.key});
+class TodoCardFilter extends StatelessWidget {
+  final String label;
+  final TaskFilterEnum taskFilter;
+  final TotalTasksModel? totalTasksModel;
+  final bool isSelected;
 
-  @override
-  State<TodoCardFilter> createState() => _TodoCardFilterState();
-}
+  const TodoCardFilter({
+    required this.label,
+    required this.taskFilter,
+    this.totalTasksModel,
+    required this.isSelected,
+    super.key,
+  });
 
-class _TodoCardFilterState extends State<TodoCardFilter> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +31,7 @@ class _TodoCardFilterState extends State<TodoCardFilter> {
         20,
       ),
       decoration: BoxDecoration(
-        color: context.primaryColor,
+        color: isSelected ? context.primaryColor : Colors.white,
         border: Border.all(
           width: 1,
           color: Colors.grey.withOpacity(0.8),
@@ -34,27 +42,47 @@ class _TodoCardFilterState extends State<TodoCardFilter> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tasks',
+            '${totalTasksModel?.totalTasks ?? 0} Tasks',
             style: context.titleStyle.copyWith(
               fontSize: 10,
-              color: Colors.white,
+              color: isSelected ? Colors.white : Colors.grey,
             ),
           ),
-          const Text(
-            'Hoje',
+          Text(
+            label,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: isSelected ? Colors.white : Colors.black,
             ),
           ),
-          LinearProgressIndicator(
-            backgroundColor: context.primaryColorLight,
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-            value: 0.4,
-          ),
+          TweenAnimationBuilder<double>(
+            tween: Tween(
+              begin: 0.0,
+              end: _getPercentCleared(),
+            ),
+            duration: const Duration(seconds: 1),
+            builder: (context, value, child) => LinearProgressIndicator(
+              backgroundColor: isSelected ? context.primaryColorLight : Colors.grey.shade300,
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(isSelected ? Colors.white : context.primaryColor),
+              value: value,
+            ),
+          )
         ],
       ),
     );
+  }
+
+  double _getPercentCleared() {
+    final totalTasks = totalTasksModel?.totalTasks ?? 0;
+    final totalCleared = totalTasksModel?.totalTasksCleared ?? 0.1;
+
+    if (totalTasks == 0) {
+      return 0;
+    }
+
+    final percent = (totalCleared * 100) / totalTasks;
+    return percent / 100;
   }
 }
