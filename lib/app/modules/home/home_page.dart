@@ -51,7 +51,6 @@ class HomePage extends StatelessWidget {
                     HomeHeader(),
                     HomeFilters(),
                     HomeWeekFilter(),
-                    HomeTasks(),
                   ],
                 ),
               ),

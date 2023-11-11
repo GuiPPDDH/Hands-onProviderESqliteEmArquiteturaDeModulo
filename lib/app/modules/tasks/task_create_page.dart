@@ -28,6 +28,7 @@ class _TaskCreatePageState extends State<TaskCreatePage> {
     ).listener(
       context: context,
       successCallback: (changeNotifier, listenerInstance) {
+        listenerInstance.dispose();
         Navigator.of(context).pop();
       },
     );

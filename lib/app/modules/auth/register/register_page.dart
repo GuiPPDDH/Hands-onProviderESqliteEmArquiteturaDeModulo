@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
     defaultListener.listener(
       context: context,
       successCallback: (changeNotifier, listenerInstance) {
-        Navigator.of(context).pop();
+        listenerInstance.dispose();
       },
       errorCallback: (changeNotifier, listenerInstance) {
         print('Ocorreu um erro');
