@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extension.dart';
+import 'package:todo_list_provider/app/modules/home/home_controller.dart';
 import '../../../models/task_model.dart';
 
 class Task extends StatelessWidget {
@@ -28,7 +30,7 @@ class Task extends StatelessWidget {
           leading: Checkbox(
             activeColor: context.primaryColor,
             value: taskModel.cleared,
-            onChanged: (value) {},
+            onChanged: (value) => context.read<HomeController>().checkOrUncheckTask(taskModel),
           ),
           title: Text(
             taskModel.description,
